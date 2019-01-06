@@ -10,7 +10,7 @@ package gameoflife;
  * @author Fernando
  */
 public class Population {
-    private int[][] population;
+    private final int[][] population;
 
     public Population(int size) {
         this.population = new int[size][size];
@@ -21,22 +21,20 @@ public class Population {
     }
     
     public int getCell(int x, int y){
-        int xlen = this.population.length;
-        int ylen = this.population[0].length;
+        int size = this.population.length;
         
-        if(0 <= x && x < xlen && 0 <= y && y < ylen)
+        if(0 <= x && x < size && 0 <= y && y < size)
             return this.population[x][y];
         throw new IndexOutOfBoundsException();
     }
     
     public void setCell(int x, int y, int value){
-        int xlen = this.population.length;
-        int ylen = this.population[0].length;
+        int size = this.population.length;
         
         if(!(value == 0 || value == 1))
             throw new IllegalArgumentException();
         
-        if(0 <= x && x < xlen && 0 <= y && y < ylen)
+        if(0 <= x && x < size && 0 <= y && y < size)
             this.population[x][y] = value;
         else
             throw new IndexOutOfBoundsException();
@@ -68,20 +66,19 @@ public class Population {
     }
     
     private int getNextGenerationCell(int currentValue, int numOfNeighbors){
-        if(currentValue == 1 && (numOfNeighbors == 2 || numOfNeighbors == 3)){
+        if(currentValue == 1 && (numOfNeighbors == 2 || numOfNeighbors == 3))
             return 1;
-        }
-        if(currentValue == 0 && numOfNeighbors == 3) {
+        if(currentValue == 0 && numOfNeighbors == 3)
             return 1;
-        }
         return 0;
     }
     
     @Override
     public String toString(){
         String strPop = "";
-        for (int i = 0; i < this.population.length; i++) {
-            for (int j = 0; j < this.population[0].length; j++) {
+        int size = this.population.length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 strPop += this.population[i][j] + " ";
             }
             strPop += "\n";

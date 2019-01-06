@@ -20,6 +20,7 @@ public class GameOfLife {
             p.setCell(8, i, 1);
         }
 
+        //Comparar cada generación con el simulador: https://bitstorm.org/gameoflife/
         System.out.println(p.toString());
         for (int i = 0; i < 35; i++) {
             System.out.println("Generación " + (i + 1));
